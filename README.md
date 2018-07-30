@@ -1,10 +1,13 @@
 # MMM-Runways
-Magic Mirror - Open runways off schiphol airport 
+Magic Mirror - Open runways of schiphol airport 
 
 Info extracted from https://www.lvnl.nl/
+
+![call](https://github.com/hansterwal/MMM-runways/blob/master/mmm-runways.png)
+
 # Installation
 Navigate into your MagicMirror's `modules` folder and execute
- 'git clone https://github.com/hansterwal/MMM-runways MMM-Runways'
+ 'git clone https://github.com/hansterwal/MMM-runways MMM-runways'
 
 Navigate into your MagicMirror's `vendor` folder and execute
 'npm install --save @fortawesome/fontawesome-free' 
@@ -21,7 +24,7 @@ No config options as of yet
 
 ## Example config.js content for this module
 		{
-			module: "MMM-Runways",
+			module: "MMM-runways",
 			position: "top_left",
       		header: "Schiphol runways"		
 		},
