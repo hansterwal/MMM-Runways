@@ -6,7 +6,6 @@
  * Created by Hans ter Wal
  *
  */
-
 Module.register("MMM-runways",{
 
 	// Default module config.
@@ -101,7 +100,6 @@ Module.register("MMM-runways",{
 		this.updateDom(this.config.animationSpeed);
 	},
 
-
 	socketNotificationReceived: function(notification, payload) {
     		if (notification === "STARTED") {
 				this.updateDom();
@@ -111,6 +109,4 @@ Module.register("MMM-runways",{
 				this.processData(payload);
     		}
 	} 	
-
-
 });

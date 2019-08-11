@@ -6,7 +6,6 @@
  * Shows open runways of Schiphol airport
  * MIT Licensed.
  */
-
 const NodeHelper = require('node_helper');
 var request = require('request');
 var moment = require('moment');
@@ -32,16 +31,13 @@ module.exports = NodeHelper.create({
 				'Content-Type': 'application/json',
 			},
 			body: bodyWithDate
-			
-			
 		}, function (error, response, body) {
 			
 			if (!error && response.statusCode == 200) {
-				self.sendSocketNotification("DATA", body);
-				//console.log(body)
+				self.runwaydata = body; //Cache data for client that connect after initial startup, so they can get
+				self.sendSocketNotification("DATA", self.runwaydata);
 			} else {
-				
-				//console.log(self.name + ": Could not load runways on url:" + lvnlUrl);
+				console.log(self.name + ": Could not load runways on url:" + lvnlUrl);
 			}
 		});
 
@@ -55,6 +51,9 @@ module.exports = NodeHelper.create({
 			self.sendSocketNotification("STARTED", true);
 			self.getData();
 			self.started = true;
+		} else if (notification === 'CONFIG' && self.started == true){
+			//Send data to clients that connect after initial connection
+			self.sendSocketNotification("DATA", self.runwaydata);
 		}
 	}
 });
@@ -66,6 +65,7 @@ function getDateAsArrayString() {
 	dateAsArray[2] = d.getDate();
 	dateAsArray[3] = d.getHours();
 	dateAsArray[4] = d.getMinutes();
+
 	return dateAsArray;
 }
 
